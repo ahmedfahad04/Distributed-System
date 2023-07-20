@@ -2,7 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const AuthRoute = require('./routers/userRoute');
+const UserRoute = require('./routers/userRoute');
+const dotenv = require('dotenv')
+const cors = require('cors');
+
 
 // connect mongodb
 mongoose.connect('mongodb://localhost:27017/userdb', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -23,10 +26,16 @@ app.use(bodyParser.urlencoded({ extended: true })); // handle data encoded in th
 app.use(bodyParser.json()); // handle data encoded in json 
 
 // listen for requests
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+// env config
+dotenv.config();
+
+// middleware
+app.use(cors());
+
 // routes
-app.use('/user', AuthRoute);
+app.use('/user', UserRoute);

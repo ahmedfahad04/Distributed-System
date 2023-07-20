@@ -69,10 +69,13 @@ const login = (req, res, next) => {
                     }
 
                     if (result) {
-                        let token = jwt.sign({ name: user.name }, 'verySecretValue', { expiresIn: '1h' })
+                        let token = jwt.sign({ name: user.name }, process.env.ACCESS_TOKEN, { expiresIn: process.env.ACCESS_TOKEN_EXPIRES })
+                        let refreshToken = jwt.sign({ name: user.name }, process.env.REFRESH_TOKEN, { expiresIn: process.env.REFRESH_TOKEN_EXPIRES })
+                        console.log(token);
                         res.json({
                             message: 'Login Successful!',
-                            token: token
+                            token: token,
+                            refreshToken: refreshToken
                         })
                     } else {
                         res.json({
@@ -89,6 +92,69 @@ const login = (req, res, next) => {
         })
 }
 
+// middleware
+const authenticate = (req, res, next) => {
+    try {
+
+        const token = req.headers.authorization.split(" ")[1];
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN);
+
+        req.user = decoded;
+        next();
+
+    } catch (error) {
+
+        if(error.name == 'TokenExpiredError') {
+            res.status(401).json({
+                message: 'Session Expired!'
+            });
+        } else {
+            res.json({
+                message: 'Authentication Failed!'
+            })
+        }
+    }
+}
+
+// careful about it when making connection with frontend
+const refreshToken = (req, res, next) => {
+
+    const refreshToken = req.body.refreshToken;
+
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, decoded) => {
+        if(err) {
+            res.status(400).json({
+                err
+            })
+        }
+        else {
+            let token = jwt.sign({name: decoded.name}, process.env.ACCESS_TOKEN, {expiresIn: process.env.ACCESS_TOKEN_EXPIRES})
+            let refreshToken = req.body.refreshToken;
+            res.status(200).json({
+                message: 'Token refreshed successfully',
+                token: token,
+                refreshToken: refreshToken
+            })
+        }
+    })
+}
+
+const remove = (req, res, next) => {
+    let phone = req.body.phone;
+
+    user.findOneAndDelete({phone: phone})
+        .then(response => {
+            res.json({
+                message: 'User deleted successfully!'
+            })
+        })
+        .catch(error => {
+            res.json({
+                message: 'An error occured!'
+            })
+        })
+}
+
 module.exports = {
-    register, show, login
+    register, show, login, authenticate, refreshToken, remove 
 }
