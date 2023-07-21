@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import styles from '../styles/Modal.module.css';
@@ -15,15 +16,36 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
 
-  const handleSubmit = () => {
-    const newPost = {
-      user: "User",
-      content: postContent,
-      image: postImage,
-      timestamp: datetime,
+  const handleSubmit = async () => {
+
+    const config = {
+      headers:{
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+      }
     };
-    onCreatePost(newPost);
-    setIsOpen(false);
+
+    // authenticate user first
+    axios.get('/user/auth', config)
+    .then((response) => {
+      console.log(response.data.username);
+
+      const newPost = {
+        user: response.data.username,
+        content: postContent,
+        image: postImage,
+        timestamp: datetime,
+      };
+  
+      console.log(newPost)
+      onCreatePost(newPost);
+      setIsOpen(false);
+      
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+    
   };
   
   return (

@@ -100,23 +100,39 @@ const authenticate = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN);
 
         req.user = decoded;
-        next();
+        // next();
+        res.json({
+            message: 'authenticated',
+            username: req.user.name 
+        })
 
     } catch (error) {
 
         if(error.name == 'TokenExpiredError') {
-            res.status(401).json({
-                message: 'Session Expired!'
-            });
+            res.status(401).json({message: 'Session Expired!'});
         } else {
-            res.json({
-                message: 'Authentication Failed!'
-            })
+            res.json({message: 'Authentication Failed!'})
         }
     }
 }
 
-// careful about it when making connection with frontend
+const remove = (req, res, next) => {
+    let phone = req.body.phone;
+
+    user.findOneAndDelete({phone: phone})
+        .then(response => {
+            res.json({
+                message: 'User deleted successfully!'
+            })
+        })
+        .catch(error => {
+            res.json({
+                message: 'An error occured!'
+            })
+        })
+}
+
+// careful about it when making connection with frontend [pending for frontend integration...]
 const refreshToken = (req, res, next) => {
 
     const refreshToken = req.body.refreshToken;
@@ -139,21 +155,6 @@ const refreshToken = (req, res, next) => {
     })
 }
 
-const remove = (req, res, next) => {
-    let phone = req.body.phone;
-
-    user.findOneAndDelete({phone: phone})
-        .then(response => {
-            res.json({
-                message: 'User deleted successfully!'
-            })
-        })
-        .catch(error => {
-            res.json({
-                message: 'An error occured!'
-            })
-        })
-}
 
 module.exports = {
     register, show, login, authenticate, refreshToken, remove 
