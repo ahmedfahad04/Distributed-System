@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../Layout'
 import MakePost from './MakePost'
-import Notification from './Notification'
+// import Notification from './Notification'
 import Post from './Post'
 
 function HomePage() {
@@ -9,21 +9,14 @@ function HomePage() {
 
   return (
     <Layout>
-      <div class='flex flex-row h-screen w-screen justify-center bg-neutral-200' style={{ paddingTop: '100px', overflow: 'scroll' }}>
+      <div class='flex flex-row h-full w-full justify-center '>
 
         {/* posts */}
         <div class='m-2 h-screen md:h-screen'>
 
           {/* make post */}
           <div className='flex justify-center items-center mb-5'>
-
-            {/* <button onClick={handleShowPostWindow}
-            class="py-2 px-4 bg-[#54AE93] text-white font-semibold rounded-lg shadow-md hover:bg-[#21184D] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-              Create Post
-            </button> */}
-
             <MakePost />
-
           </div>
 
           {/* Show posts  */}
@@ -76,7 +69,7 @@ function HomePage() {
         {/* </div> */}
 
         {/* notification */}
-        <div className='mt-5 h-full md:h-screen p-5' style={{ overflow: 'scroll' }}>
+        {/* <div className='mt-5 h-full md:h-screen p-5'>
           <div class='font-medium text-2xl rounded-lg'>
             <h1>
               Notifications
@@ -92,7 +85,7 @@ function HomePage() {
             <Notification />
           </div>
 
-        </div>
+        </div> */}
 
       </div>
 

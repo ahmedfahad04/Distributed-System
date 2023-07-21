@@ -8,8 +8,21 @@ function LoginPage() {
 
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const submit = (event) => {
+
+        // Show the loading spinner while logging in
+        setLoading(true);
+
+        // Simulate a delay for the login process (you can replace this with your actual login API call)
+        setTimeout(() => {
+            // Perform the actual login process her
+
+            setLoading(false);
+        }, 1000); // Adjust the delay time as needed
+
+
         event.preventDefault(); // Prevent the default form submission behavior
 
         const formData = {
@@ -19,7 +32,7 @@ function LoginPage() {
 
         axios.post('/user/login', formData)
             .then((response) => {
-                
+
                 if (response.data.token) {
                     localStorage.setItem('accessToken', response.data.token);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
@@ -30,24 +43,37 @@ function LoginPage() {
             .catch((error) => {
                 console.log(error);
             });
-    };
 
+    };
 
 
     return (
         <Layout>
 
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+
+                {loading && (
+                    <div className="flex items-center justify-center h-screen">
+                        Loading...
+                        <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-blue-500 border-solid">
+                        </div>
+                    </div>
+                )}
+
                 {/* Card wrapper */}
                 <div className="w-full bg-[#f0f2f4] rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center">
+
                     {/* Card content */}
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+
+
                         <h1 className="text-xl font-bold text-[#0065B3] md:text-2xl dark:text-white">
                             Login
                         </h1>
 
                         <div className="flex justify-center items-center mt-10">
                             <form>
+
                                 <div className="w-80">
                                     <div className="mb-6">
                                         <label for="user_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email or Phone Number</label>
