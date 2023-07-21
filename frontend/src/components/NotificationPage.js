@@ -8,7 +8,7 @@ function NotificationPage({ showNotification }) {
 
       {/* Floating notification window */}
       {showNotification && (
-        <div className='bg-slate-500 text-white p-2 flex flex-col justify-center items-center fixed bottom-10 right-5 rounded-lg'>
+        <div className='bg-slate-100 text-white flex flex-col justify-center items-center fixed bottom-10 right-5 rounded-md'>
             <Notification/>
             <Notification/>
             <Notification/>
