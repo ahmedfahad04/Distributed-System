@@ -30,11 +30,23 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
       console.log(response.data.username);
 
       const newPost = {
-        user: response.data.username,
+        name: response.data.username,
         content: postContent,
         image: postImage,
         timestamp: datetime,
       };
+
+      // post to database
+      axios.post('/post/create', newPost)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+      // reload the screen
+      // window.location.reload();
   
       console.log(newPost)
       onCreatePost(newPost);

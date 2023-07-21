@@ -6,7 +6,7 @@ function Post({ post }) {
       <div>
         <div>
           <h1 className='text-2xl font-medium'>
-            {post.user}
+            {post.name}
           </h1>
           <h4 className='text-xs font-light'>
             {post.timestamp}

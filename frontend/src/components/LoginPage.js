@@ -36,7 +36,7 @@ function LoginPage() {
                 if (response.data.token) {
                     localStorage.setItem('accessToken', response.data.token);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
-                    localStorage.setItem('isloggedIn', true);
+                    // localStorage.setItem('isloggedIn', true);
                     window.location.href = '/home';
                 }
             })

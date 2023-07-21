@@ -75,7 +75,8 @@ const login = (req, res, next) => {
                         res.json({
                             message: 'Login Successful!',
                             token: token,
-                            refreshToken: refreshToken
+                            refreshToken: refreshToken,
+                            username: user.name
                         })
                     } else {
                         res.json({
