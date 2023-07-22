@@ -26,9 +26,7 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
     // authenticate user first
     axios.get('/user/auth', config)
       .then((response) => {
-        console.log("UNAME: ", response.data.user.name);
-        console.log("UID: ", response.data.user.u_id);
-        
+                
         localStorage.setItem('u_id', response.data.user.u_id)
 
         const newPost = {
@@ -41,7 +39,8 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
 
         const newNotification = {
           p_id: '',
-          content: response.data.user.name + " has posted a new post!",
+          u_id: response.data.user.u_id,
+          content: response.data.user.name + " has posted a new memory!!",
           timestamp: datetime
         };
 

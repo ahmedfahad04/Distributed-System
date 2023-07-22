@@ -39,8 +39,6 @@ function Navbar({ setLoading }) {
     setShowDropdown((prevState) => !prevState); // Toggle the user dropdown
   };
 
-  // const notifications = ['Notification 1', 'Notification 2', 'Notification 3'];
-
   const onSignOut = () => {
     // Show the loading spinner before starting the logout process
     setLoading(true);

@@ -2,10 +2,11 @@ const Notification = require('../models/notification');
 
 const addNotification = (req, res) => {
 
-    const { p_id, content, timestamp } = req.body;
+    const { p_id, u_id, content, timestamp } = req.body;
 
     let notificationContent = new Notification({
         p_id: p_id,
+        u_id: u_id,
         content: content,
         timestamp: timestamp
     })

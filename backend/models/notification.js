@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const notificationSchema = new Schema({
     p_id: {type: String},
+    u_id: {type: String},
     content: {type: String},
     timestamp: {type: String}
 }, {timestamps: true});
