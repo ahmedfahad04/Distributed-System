@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
+import MyPost from './components/MyPost';
 import RegistrationPage from './components/RegistrationPage';
 import './index.css';
 
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <HomePage />,
+  },
+
+  {
+    path: "/own",
+    element: <MyPost />,
   }
 
 ]);

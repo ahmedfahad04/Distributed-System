@@ -41,6 +41,22 @@ const showPosts = (req, res, next) => {
         });
       });
 };
+
+const showPostsByUser = (req, res, next) => {
+
+  const userId = req.body.u_id;
+  Post.find({u_id: userId})
+    .then((response) => {
+      res.json({
+        response,
+      });
+    })
+    .catch((error) => {
+      res.json({
+        message: 'An error occurred! Post showcasing failed!',
+      });
+    });
+};
   
 const deletePost = (req, res, next) => {
 
@@ -78,4 +94,4 @@ const getPostById = async (req, res) => {
     }
 };
 
-module.exports = { createPost, showPosts, deletePost, getPostById}
+module.exports = { createPost, showPosts, deletePost, getPostById, showPostsByUser}
