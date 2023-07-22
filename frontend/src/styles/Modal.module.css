@@ -64,6 +64,15 @@
     align-items: center;
 }
 
+.label-container {
+    display: flex;
+    width: 0px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
+    margin-top: 10px;
+  }
+
 .closeBtn {
     cursor: pointer;
     font-weight: 500;
@@ -149,7 +158,7 @@
 .textarea {
     width: 100%;
     height: 100%;
-    background-color: #d7d4d4;
+    background-color: antiquewhite;
     margin-bottom: 10px;
     resize: none;
     border-radius: 5px;

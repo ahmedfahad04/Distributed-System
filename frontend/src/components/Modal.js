@@ -7,6 +7,8 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
 
   const [postContent, setPostContent] = useState('');
   const [postImage, setPostImage] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+
 
   var currentdate = new Date();
   var datetime = currentdate.getDate() + "/"
@@ -16,7 +18,7 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
     + currentdate.getMinutes() + ":"
     + currentdate.getSeconds();
 
-  const handleSubmit = async () => {
+  const handleSubmitPost = async () => {
     const config = {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
@@ -53,7 +55,7 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
             newNotification.p_id = response.data.postID;
 
             console.log("NEW NOT: ", newNotification)
-
+            console.log("NEW POST: ", newPost)
 
             // add notification to db
             axios.post('/notify/add', newNotification)
@@ -78,6 +80,41 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
       });
   };
 
+  const handleImageUpload = (file) => {
+    if (file) {
+      // Update the state with the selected file name
+      setPostImage(file.name);
+      setSelectedFile(file);
+      // You can also save the actual file in the state if needed
+      // setPostImage(file);
+    } else {
+      // Clear the state if no file is selected
+      setPostImage('');
+    }
+  };
+
+  const handleUpload = () => {
+    if (!selectedFile) {
+      console.log('No image selected.');
+      return;
+    }
+
+    console.log("IMG: ", selectedFile);
+
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+
+    // Replace the URL with your backend endpoint for image upload
+    axios.post('/image/uploadIMG', formData)
+      .then((response) => {
+        console.log('Image uploaded successfully.', response.data.etag.etag);
+        setPostImage(response.data.etag.etag);
+      })
+      .catch((error) => {
+        console.error('Error uploading the image:', error);
+      });
+  }; 
+
   return (
     <>
       <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
@@ -97,25 +134,36 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
           </div>
 
           <div className={styles.imagename}>
-            <h1 class='px-5 text-slate-500 flex justify-center flex-col'>{postImage} {postImage.length > 0 ? " - Image Uploaded!!" : "Upload Image..."}</h1>
+            <h1 class="px-5 text-blue-500 font-medium flex justify-center flex-col">
+              {postImage}
+            </h1>
           </div>
 
           <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
 
-              <button
-                className={styles.deleteBtn}
-                onClick={() => setPostImage('')} // ***** save image location ***** //
-              >
-                Upload Image
-              </button>
+            <div style={{ display: 'flex', width: '120px', whiteSpace: 'nowrap', height: "50px", marginTop: "5px" }}>
+              <label htmlFor="files" className="text-black hover:bg-red-600 border-2 justify-center items-center flex border-grey-200 px-5 rounded-2xl bg-red-400 cursor-pointer">
+                Select Image
+              </label>
+              <input
+                id="files"
+                style={{ visibility: 'hidden' }}
+                type="file"
+                onChange={(event) => handleImageUpload(event.target.files[0])}
+              />
+              <button onClick={handleUpload} className="text-black">Upload</button>
+            </div>
+
+            
 
               <button
                 className={styles.postBtn}
-                onClick={handleSubmit}
+                onClick={handleSubmitPost}
               >
                 Post
               </button>
+              
             </div>
           </div>
         </div>
