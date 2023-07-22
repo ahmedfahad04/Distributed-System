@@ -36,7 +36,7 @@ function LoginPage() {
                 if (response.data.token) {
                     localStorage.setItem('accessToken', response.data.token);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
-                    // localStorage.setItem('isloggedIn', true);
+                    localStorage.setItem('username', response.data.username);
                     window.location.href = '/home';
                 }
             })
@@ -48,7 +48,7 @@ function LoginPage() {
 
 
     return (
-        <Layout>
+        <Layout> 
 
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
 

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import NotificationPage from './NotificationPage';
 
-function Navbar({setLoading}) {
+function Navbar({ setLoading }) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
 
   useEffect(() => {
+
     const token = localStorage.getItem('accessToken');
     if (token) {
       setIsLoggedIn(true);
@@ -16,9 +18,14 @@ function Navbar({setLoading}) {
   }, []);
 
   const handleNotificationClick = () => {
-
     showNotification ? setShowNotification(false) : setShowNotification(true);
   };
+
+  const handleDropdownClick = () => {
+    setShowDropdown((prevState) => !prevState); // Toggle the user dropdown
+  };
+
+  const notifications = ['Notification 1', 'Notification 2', 'Notification 3'];
 
   const onSignOut = () => {
     // Show the loading spinner before starting the logout process
@@ -60,25 +67,62 @@ function Navbar({setLoading}) {
             {isLoggedIn && (
               <div class='flex'>
 
-                {/* Notification icon  */}
-                {/* Pass the showNotification prop to the Notification component */}
+                {/* User name  */}
+                {/* <div className='flex text-blue-800 font-medium items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+                  {localStorage.getItem('username')}
+                </div> */}
 
-                <NotificationPage showNotification={showNotification} onClose={() => setShowNotification(false)} />
-                
+                {/* Notification Window  */}
+                <NotificationPage showNotification={showNotification} notifications={notifications} />
+
+                {/* Notification Icon  */}
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button type="button" onClick={handleNotificationClick} class="rounded-full bg-slate-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                    <span class="sr-only">View notifications</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <button type="button" onClick={handleNotificationClick} class="shadow-md rounded-md bg-white p-2 hover:bg-stone-300 text-gray-400 hover:text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-gray-800">
+                    {/* <span class="sr-only">View notifications</span> */}
+                    <svg class="h-6 w-6" fill="#0077B5" viewBox="0 0 24 24" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                     </svg>
                   </button>
                 </div>
 
-                {/* Signout Button  */}
-                <div class="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button type="button" onClick={onSignOut} class="rounded-full p-3 bg-blue-800 p-1 text-white hover:bg-blue-500 hover:text-grey-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                    Signout
+                {/* dropdown menu  */}
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={handleDropdownClick}
+                    className="rounded-md flex px-3 py-2 m-2 shadow-md bg-white p-1 text-slate-800 hover:bg-stone-300 hover:text-[#0077B5] font-medium focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  >
+                    <div className="px-2">{localStorage.getItem('username')}</div>
+                    <svg
+                      className="h-6 w-6"
+                      fill="blue"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      width="10px" height="10px" xmlns="http://www.w3.org/2000/svg"
+  
+                    >
+                      <rect x="0" fill="none" width="24" height="24" />
+
+                      <g>
+
+                        <path d="M7 10l5 5 5-5" />
+
+                      </g>
+                    </svg>
                   </button>
+
+                  {/* Dropdown Content */}
+                  {showDropdown && (
+
+                    <div className="absolute right-0 mt-2 w-32  bg-white border rounded-lg shadow-lg">
+                      <button
+                        onClick={onSignOut}
+                        className="px-4 py-2 w-32 text-gray-800 hover:bg-gray-100 focus:bg-gray-100"
+                      >
+                        Signout
+                      </button>
+                    </div>
+                  )}
                 </div>
 
               </div>
