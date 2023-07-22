@@ -12,7 +12,7 @@ function NotificationPage({ showNotification, notifications }) {
           {notifications.map((notification, index) => (
             <div
               key={index}
-              className="px-2 w-64 text-gray-800 hover:bg-gray-100 focus:bg-gray-100"
+              className="w-64 text-gray-800 hover:bg-gray-100 focus:bg-gray-100"
             >
               <Notification message={notification} />
             </div>
