@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Layout from '../Layout';
+import Layout from '../../Layout';
 import Post from './Post';
 
 function MyPost() {
 
-    const [posts, setPosts] = useState([]); // Set initial value as an empty array
+    const [post, setPost] = useState([]); // Set initial value as an empty array
 
     useEffect(() => {
         // get all posts
@@ -13,7 +13,7 @@ function MyPost() {
             .get('/post/all')
             .then((response) => {
                 console.log("MY POST: ", response.data.response);
-                setPosts(response.data.response); // Set the state with the response data
+                setPost(response.data.response); // Set the state with the response data
             })
             .catch((error) => {
                 console.log(error);
@@ -27,8 +27,8 @@ function MyPost() {
                 <div class='m-2 h-screen md:h-screen'>
                     {/* Show posts  */}
                     <div>
-                        {posts
-                            .filter((post) => post.u_id === localStorage.getItem('u_id'))
+                        {post
+                            .filter((post) => post._id === localStorage.getItem('p_id'))
                             .map((post, i) => (
                                 <Post key={i} post={post} />
                             ))}

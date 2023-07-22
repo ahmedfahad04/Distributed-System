@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
-import styles from '../styles/Modal.module.css';
+import styles from '../../styles/Modal.module.css';
 
 const Modal = ({ setIsOpen, onCreatePost }) => {
 

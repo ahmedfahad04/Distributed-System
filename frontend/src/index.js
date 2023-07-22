@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
-import MyPost from './components/MyPost';
-import ParticulaPost from './components/ParticulaPost';
+import MyPost from './components/Posts/MyPost';
+import ParticulaPost from './components/Posts/ParticulaPost';
 import RegistrationPage from './components/RegistrationPage';
 import './index.css';
 

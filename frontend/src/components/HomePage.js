@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Layout from '../Layout';
-import MakePost from './MakePost';
-import Post from './Post';
+import MakePost from './Posts/MakePost';
+import Post from './Posts/Post';
 
 function HomePage() {
   const [posts, setPosts] = useState([]); // Set initial value as an empty array

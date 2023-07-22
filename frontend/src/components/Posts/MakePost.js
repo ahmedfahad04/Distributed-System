@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styles from '../styles/Modal.module.css';
 import Modal from './Modal';
+import styles from '../../styles/Modal.module.css';
 
 function MakePost({addPost}) {
 
