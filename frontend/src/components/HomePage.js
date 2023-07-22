@@ -35,7 +35,9 @@ function HomePage() {
           </div>
           {/* Show posts  */}
           <div>
-            {posts.map((post, i) => (
+            {posts
+            .filter((post) => post.u_id !== localStorage.getItem('u_id'))
+            .map((post, i) => (
               <Post key={i} post={post} />
             ))}
           </div>

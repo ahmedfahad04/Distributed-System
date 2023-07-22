@@ -2,11 +2,10 @@ const Post = require('../models/posts');
 
 const createPost = (req, res) => {
 
-    const { name, content, image, timestamp } = req.body;
-
-    const id = Math.random().toString(36);
+    const { u_id, name, content, image, timestamp } = req.body;
 
     let postContent = new Post({
+        u_id: u_id,
         name: name,
         content: content,
         image: image,
@@ -29,21 +28,20 @@ const createPost = (req, res) => {
 }
 
 const showPosts = (req, res, next) => {
-
+  
     Post.find()
-    .then(response => {
+      .then((response) => {
         res.json({
-            response
-        })
-    })
-    .catch(error => {
+          response,
+        });
+      })
+      .catch((error) => {
         res.json({
-            message: 'An error occured! Post showcasing failed!'
-        })
-    })
-
-}
-
+          message: 'An error occurred! Post showcasing failed!',
+        });
+      });
+};
+  
 const deletePost = (req, res, next) => {
 
     const postID = req.body.postID;
@@ -78,6 +76,6 @@ const getPostById = async (req, res) => {
       console.error(error);
       return res.status(500).json({ message: 'Internal server error' });
     }
-  };
+};
 
 module.exports = { createPost, showPosts, deletePost, getPostById}

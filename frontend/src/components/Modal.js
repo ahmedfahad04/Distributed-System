@@ -26,25 +26,35 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
     // authenticate user first
     axios.get('/user/auth', config)
       .then((response) => {
-        console.log(response.data.username);
+        console.log("UNAME: ", response.data.user.name);
+        console.log("UID: ", response.data.user.u_id);
+        
+        localStorage.setItem('u_id', response.data.user.u_id)
 
         const newPost = {
-          name: response.data.username,
+          u_id: response.data.user.u_id,
+          name: response.data.user.name,
           content: postContent,
           image: postImage,
           timestamp: datetime,
         };
 
         const newNotification = {
-          p_id: response.data.postID,
-          content: response.data.username + " has posted a new post!",
+          p_id: '',
+          content: response.data.user.name + " has posted a new post!",
           timestamp: datetime
         };
+
 
         // post to database
         axios.post('/post/create', newPost)
           .then((response) => {
             console.log(response);
+
+            newNotification.p_id = response.data.postID;
+
+            console.log("NEW NOT: ", newNotification)
+
 
             // add notification to db
             axios.post('/notify/add', newNotification)

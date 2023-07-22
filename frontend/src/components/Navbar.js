@@ -49,6 +49,8 @@ function Navbar({ setLoading }) {
     setTimeout(() => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
+      localStorage.removeItem('u_id');
+      localStorage.removeItem('username')
       window.location.href = '/';
     }, 1000); // Adjust the delay time as needed
   };
@@ -134,7 +136,7 @@ function Navbar({ setLoading }) {
                         onClick={onSignOut}
                         className="px-4 py-2 w-32 text-gray-800 hover:bg-gray-100 focus:bg-gray-100"
                       >
-                        Signout
+                        Logout
                       </button>
                     </div>
                   )}

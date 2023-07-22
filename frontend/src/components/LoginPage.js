@@ -37,6 +37,7 @@ function LoginPage() {
                     localStorage.setItem('accessToken', response.data.token);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
                     localStorage.setItem('username', response.data.username);
+                    localStorage.setItem('u_id', response.data.u_id)
                     window.location.href = '/home';
                 }
             })

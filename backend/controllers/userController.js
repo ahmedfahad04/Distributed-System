@@ -69,14 +69,15 @@ const login = (req, res, next) => {
                     }
 
                     if (result) {
-                        let token = jwt.sign({ name: user.name }, process.env.ACCESS_TOKEN, { expiresIn: process.env.ACCESS_TOKEN_EXPIRES })
-                        let refreshToken = jwt.sign({ name: user.name }, process.env.REFRESH_TOKEN, { expiresIn: process.env.REFRESH_TOKEN_EXPIRES })
+                        let token = jwt.sign({ name: user.name, u_id: user._id }, process.env.ACCESS_TOKEN, { expiresIn: process.env.ACCESS_TOKEN_EXPIRES })
+                        let refreshToken = jwt.sign({ name: user.name, u_id: user._id }, process.env.REFRESH_TOKEN, { expiresIn: process.env.REFRESH_TOKEN_EXPIRES })
                         console.log(token);
                         res.json({
                             message: 'Login Successful!',
                             token: token,
                             refreshToken: refreshToken,
-                            username: user.name
+                            username: user.name,
+                            u_id: user._id
                         })
                     } else {
                         res.json({
@@ -104,7 +105,7 @@ const authenticate = (req, res, next) => {
         // next();
         res.json({
             message: 'authenticated',
-            username: req.user.name 
+            user: req.user
         })
 
     } catch (error) {
