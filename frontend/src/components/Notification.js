@@ -1,16 +1,13 @@
 import React from 'react';
 
-function Notification() {
-
-  // const handleMarkAsRead = () => {
-  //   console.log('Mark as read');
-  // };
+function Notification({content}) {
 
   return (
     <div>
-      {/* <div className='flex justify-center items-center'> */}
-        <p className='text-md px-2 py-2 m-1 rounded-md text-black hover:bg-stone-200' style={{ cursor: 'pointer' }}>You have new notifications</p>
-      {/* </div> */}
+        <p className='text-lg pl-1 font-medium m-1 rounded-md text-black hover:bg-stone-200' style={{ cursor: 'pointer' }}>
+          {content.content}
+          <p className='text-sm font-light'>{content.timestamp}</p>
+        </p>
     </div>
   );
 }

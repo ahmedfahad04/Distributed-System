@@ -16,7 +16,7 @@ function HomePage() {
     axios
       .get('/post/all')
       .then((response) => {
-        console.log(response.data);
+        console.log("POST: ",response.data.response);
         setPosts(response.data.response); // Set the state with the response data
       })
       .catch((error) => {

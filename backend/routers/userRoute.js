@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/authController');
+const userController = require('../controllers/userController');
 
 // Define the 'register' route and use the 'register' function as the route handler
 router.post('/register', userController.register);

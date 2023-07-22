@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const UserRoute = require('./routers/userRoute');
 const PostRoute = require('./routers/postRoute');
+const NotificationRoute = require('./routers/notificationRouter');
 const dotenv = require('dotenv')
 const cors = require('cors');
 
@@ -41,3 +42,4 @@ app.use(cors());
 // routes
 app.use('/user', UserRoute);
 app.use('/post', PostRoute);
+app.use('/notify', NotificationRoute);
