@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
 // import Navbar from './Navbar'
@@ -46,6 +46,15 @@ function LoginPage() {
             });
 
     };
+
+
+    useEffect (() => {
+
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            window.location.href = '/home';
+        }
+    }, []);
 
 
     return (

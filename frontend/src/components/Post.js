@@ -2,31 +2,32 @@ import React from 'react';
 
 function Post({ post }) {
   return (
-    <div className='mb-5 m-2 border-2 border-slate-500 rounded-lg p-2 shadow-xl bg-slate-200 ' style={{ width: '40rem' }}>
+    <div className='mb-5 m-2 rounded-lg p-2 shadow-xl bg-stone-200 ' style={{ width: '40rem' }}>
       <div>
         <div>
-          <h1 className='text-2xl font-medium'>
+          <h1 className='text-3xl font-medium text-[#0077B5]'>
             {post.name}
           </h1>
           <h4 className='text-xs font-light'>
             {post.timestamp}
           </h4>
-          <hr
+          {/* <hr
             style={{
               background: 'grey',
               color: 'blue',
               height: '3px',
               marginTop: '10px',
             }}
-          />
+          /> */}
         </div>
-        <div className='mt-3'>
+        <div className='mt-3 text-xl'>
           {post.content}
         </div>
 
         {/* Show Image  */}
         <div className='flex justify-center items-center mt-2'>
-          <img src={post.image} className='w-full rounded-lg border-2 border-white-500 shadow' alt='avatar' />
+          <img src={'http://192.168.0.124:9000/distributed-system/'+post.image} className='w-full rounded-lg border-2 border-white-500 shadow' alt='avatar' />
+          
         </div>
       </div>
     </div>

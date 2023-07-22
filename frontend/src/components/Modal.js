@@ -9,7 +9,6 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
   const [postImage, setPostImage] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
 
-
   var currentdate = new Date();
   var datetime = currentdate.getDate() + "/"
     + (currentdate.getMonth() + 1) + "/"
@@ -30,6 +29,30 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
       .then((response) => {
                 
         localStorage.setItem('u_id', response.data.user.u_id)
+
+        // UPLOAD IMAGE >>>>>>>>>>>>>>>>>>
+
+        if (!selectedFile) {
+          console.log('No image selected.');
+          return;
+        }
+    
+        console.log("IMG: ", selectedFile);
+    
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+    
+        // Replace the URL with your backend endpoint for image upload
+        axios.post('/image/uploadIMG', formData)
+          .then((response) => {
+            console.log('Image uploaded successfully.', response.data.etag.etag);
+            setPostImage(response.data.etag.etag);
+          })
+          .catch((error) => {
+            console.error('Error uploading the image:', error);
+          });
+
+        // UPLOAD IMAGE <<<<<<<<<<<<<<<<<<
 
         const newPost = {
           u_id: response.data.user.u_id,
