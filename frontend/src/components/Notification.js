@@ -3,7 +3,8 @@ import React from 'react';
 function Notification({content}) {
 
   const handleNotification = () => {
-    alert(content.p_id);    
+    localStorage.setItem('p_id', content.p_id);
+    window.location.href = '/specific';
   }
 
   return (
