@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
-// import Navbar from './Navbar'
 
 function LoginPage() {
 
@@ -18,7 +17,6 @@ function LoginPage() {
         // Simulate a delay for the login process (you can replace this with your actual login API call)
         setTimeout(() => {
             // Perform the actual login process her
-
             setLoading(false);
         }, 1000); // Adjust the delay time as needed
 
@@ -39,10 +37,14 @@ function LoginPage() {
                     localStorage.setItem('username', response.data.username);
                     localStorage.setItem('u_id', response.data.u_id)
                     window.location.href = '/home';
-                }
+                } else {
+                    alert("Invalid username or password");
+                }              
+
             })
             .catch((error) => {
                 console.log(error);
+                
             });
 
     };

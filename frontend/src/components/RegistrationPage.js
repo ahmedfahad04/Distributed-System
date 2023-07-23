@@ -27,8 +27,8 @@ function RegistrationPage() {
     .then((response) => {
       
       // show the message from response json
-      alert(response.data.message);
       window.location.href = '/login';
+      alert("Registration Successful!!")
       
     });
 

@@ -77,9 +77,6 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
 
             newNotification.p_id = response.data.postID;
 
-            console.log("NEW NOT: ", newNotification)
-            console.log("NEW POST: ", newPost)
-
             // add notification to db
             axios.post('/notify/add', newNotification)
               .then((response) => {
@@ -101,6 +98,8 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
       .catch((error) => {
         console.log(error);
       });
+
+      alert("Post created successfully!!")
   };
 
   const handleImageUpload = (file) => {
@@ -116,27 +115,6 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
     }
   };
 
-  const handleUpload = () => {
-    if (!selectedFile) {
-      console.log('No image selected.');
-      return;
-    }
-
-    console.log("IMG: ", selectedFile);
-
-    const formData = new FormData();
-    formData.append('image', selectedFile);
-
-    // Replace the URL with your backend endpoint for image upload
-    axios.post('/image/uploadIMG', formData)
-      .then((response) => {
-        console.log('Image uploaded successfully.', response.data.etag.etag);
-        setPostImage(response.data.etag.etag);
-      })
-      .catch((error) => {
-        console.error('Error uploading the image:', error);
-      });
-  }; 
 
   return (
     <>
@@ -175,7 +153,6 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
                 type="file"
                 onChange={(event) => handleImageUpload(event.target.files[0])}
               />
-              <button onClick={handleUpload} className="text-black">Upload</button>
             </div>
 
             
