@@ -71,5 +71,7 @@ Go to the ***backeend*** directory
 ## Tech Stack
 
 **Client:** React, TailwindCSS
+
 **Server:** Node, Express
+
 **Database:** Minio, MongoDB
