@@ -15,11 +15,63 @@ Currently, this version of the app supports the following features:
 * Making Post along with `Image`
 * Uploading & Showing images from `Minio`
 * Notification for newly created posts
-* Clicking each notification redirects to the particular post 
+* Clicking each notification redirects to the particular post
 
-## TechStack 
 
-* **FrontEnd**: ReactJS
-* **BackEnd**: NodeJS
-* **Database**: MongoDB
-* **Object Storage**: Minio
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/ahmedfahad04/Distributed-System.git
+```
+
+Go to the project directory
+
+```bash
+  cd Distributed-System
+```
+
+### Database
+
+Install ***Minio*** in your linux machine by following this [guide](https://github.com/abj-paul/Decentralized-Social-Media/blob/main/backend/SETUP.org). Then start the Minio server
+
+```bash
+sudo ./minio server /minio
+```
+
+Install ***MongoDB*** in your local machine. Follow this [official Documentation](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/) to install it. Check your mongodb is running in background
+
+```bash
+sudo systemctl status mongod
+```
+
+If mongodb is not activated then run the following command 
+
+```bash
+sudo systemctl start mongod
+```
+
+### Application
+
+Go to the ***frontend*** directory & run the command
+
+```bash
+  cd frontend
+  npm start
+```
+
+Go to the ***backeend*** directory
+
+```bash
+  cd backend
+  npm start
+```
+
+## Tech Stack
+
+**Client:** React, TailwindCSS
+
+**Server:** Node, Express
+
+**Database:** Minio, MongoDB
