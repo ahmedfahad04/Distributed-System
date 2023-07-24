@@ -14,6 +14,7 @@ function MyPost() {
             .then((response) => {
                 console.log("MY POST: ", response.data.response);
                 setPosts(response.data.response); // Set the state with the response data
+                
             })
             .catch((error) => {
                 console.log(error);

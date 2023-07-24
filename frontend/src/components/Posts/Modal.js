@@ -69,7 +69,6 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
           timestamp: datetime
         };
 
-
         // post to database
         axios.post('/post/create', newPost)
           .then((response) => {

@@ -7,7 +7,7 @@ function Navbar({ setLoading }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
-  const [notifications, setNotifications] = useState([]); // Set initial value as an empty array
+  const [myNotfications, setMyNotifications] = useState([]); // Set initial value as an empty array
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -21,10 +21,11 @@ function Navbar({ setLoading }) {
   useEffect(() => {
     // get all posts
     axios
-      .get('/notify/all')
+      .get(`/notify/${localStorage.getItem('u_id')}`)
       .then((response) => {
         console.log("Notification: ",response.data.notifications);
-        setNotifications(response.data.notifications); // Set the state with the response data
+        setMyNotifications(response.data.notifications); // Set the state with the response data
+        console.log("MY Notification: ",myNotfications)
       })
       .catch((error) => {
         console.log(error);
@@ -90,7 +91,7 @@ function Navbar({ setLoading }) {
               <div class='flex'>
 
                 {/* Notification Window  */}
-                <NotificationPage showNotification={showNotification} notifications={notifications} />
+                <NotificationPage showNotification={showNotification} notifications={myNotfications} />
 
                 {/* Notification Icon  */}
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
