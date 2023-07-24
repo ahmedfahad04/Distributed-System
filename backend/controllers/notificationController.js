@@ -53,10 +53,11 @@ const showNotifications = (req, res) => {
 
 const markAsReadNotification = async (req, res) => {
   try {
-    const post_id = req.params.id;
+    const post_id = req.params.pid;
+    const user_id = req.params.uid;
 
     // Find the notification by ID
-    const notification = await Notification.findOne({ p_id: post_id });
+    const notification = await Notification.findOne({ p_id: post_id, u_id: user_id });
 
     if (!notification) {
       return res.status(404).json({ message: 'Notification not found' });
