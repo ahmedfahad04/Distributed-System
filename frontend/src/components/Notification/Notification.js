@@ -10,7 +10,7 @@ function Notification({content}) {
     // MARK AS READ >>>>>>>>>
     axios.post(`/notify/markAsRead/${content.u_id}/${content.p_id}`)
       .then((response) => {
-        alert("MARK AS READ: ", response.data.response);
+        console.log("MARK AS READ: ", response.data.response);
       })
       .catch((error) => {
         console.log(error);

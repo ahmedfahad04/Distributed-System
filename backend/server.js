@@ -8,6 +8,7 @@ const ImageRoute = require('./routers/imageUploadRoute');
 const NotificationRoute = require('./routers/notificationRouter');
 const dotenv = require('dotenv')
 const cors = require('cors');
+require('./clearNotifications')     // run clearNotifications scheduler
 
 
 // connect mongodb
