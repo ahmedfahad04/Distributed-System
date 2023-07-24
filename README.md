@@ -60,6 +60,7 @@ Go to the ***frontend*** directory & run the command
 
 ```bash
   cd frontend
+  npm i
   npm start
 ```
 
@@ -67,6 +68,7 @@ Go to the ***backeend*** directory
 
 ```bash
   cd backend
+  npm i
   npm start
 ```
 
