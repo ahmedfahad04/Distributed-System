@@ -3,7 +3,7 @@
 
 A minimalist clone of social media (like LinkedIn) that represents basic operations like adding posts along with images, user registration, and log in with proper authentication and authorization ensured with JWT Token.
 
-Our target is to build a `monolithic` application first. Later we'll convert it into a `microservice` for scalability and other production-related purpose.
+Our target is to build a ***monolithic*** application first. Later we'll convert it into a ***microservice***` for scalability and other production-related purpose.
 
 ## Features
 
@@ -15,7 +15,9 @@ Currently, this version of the app supports the following features:
 * Making Post along with `Image`
 * Uploading & Showing images from `Minio`
 * Notification for newly created posts
-* Clicking each notification redirects to the particular post
+* Redirecting to the particular post by clicking notifications
+* Notification Mark as read feature enabled
+* Notification Cleaner (clear already read notification in every 30 minutes)
 
 
 ## Run Locally
@@ -67,6 +69,8 @@ Go to the ***backeend*** directory
   cd backend
   npm start
 ```
+
+***CAUTION: Each time you run the `minio` server in your terminal a new IP address will be assigned. Therefore you have to change this IP in the code in two places. Firstly in the `frontend` folder make changes to the `Post.js` file where we have used the URL to show the image. Secondly in the `backend` folder's `imageUploadController.js' file where the endpoint of minio is defined.***
 
 ## Tech Stack
 
