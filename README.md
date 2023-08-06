@@ -36,6 +36,15 @@ Go to the project directory
 
 ### Database
 
+Configure the **.env** folder that should contain the following field
+
+```bash
+ACCESS_TOKEN='************************'
+REFRESH_TOKEN='************************'
+ACCESS_TOKEN_EXPIRES='1h'
+REFRESH_TOKEN_EXPIRES='2d'
+```
+
 Install ***Minio*** in your linux machine by following this [guide](https://github.com/abj-paul/Decentralized-Social-Media/blob/main/backend/SETUP.org). Then start the Minio server
 
 ```bash
@@ -72,7 +81,7 @@ Go to the ***backeend*** directory
   npm start
 ```
 
-***CAUTION: Each time you run the `minio` server in your terminal a new IP address will be assigned. Therefore you have to change this IP in the code in two places. Firstly in the `frontend` folder make changes to the `Post.js` file where we have used the URL to show the image. Secondly in the `backend` folder's `imageUploadController.js' file where the endpoint of minio is defined.***
+***CAUTION: Each time you run the `minio` server in your terminal a new IP address will be assigned. Therefore you have to change this IP in the code in two places. Firstly in the `frontend` folder make changes to the `Post.js` file where we have used the URL to show the image. Secondly in the `backend` folder's `imageUploadController.js' file where the endpoint of minio is defined. Also you need to UPDATE the POLICIES to PUBLIC so that the image URL can be accessed from anywhere. You have to update it from Minio Console that runs on web***
 
 ## Tech Stack
 
