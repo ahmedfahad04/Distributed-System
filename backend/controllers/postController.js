@@ -19,6 +19,7 @@ const createPost = (req, res) => {
             postID: savedpost._id
         })
     })
+    
     .catch(() => {
         res.json({
             message: 'Post Publishion Failed!'

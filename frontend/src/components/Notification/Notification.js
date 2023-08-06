@@ -7,7 +7,7 @@ function Notification({content}) {
     localStorage.setItem('p_id', content.p_id);
     window.location.href = '/specific';
 
-    // MARK AS READ >>>>>>>>>
+    // MARK AS READ >>>>>>>>
     axios.post(`/notify/markAsRead/${content.u_id}/${content.p_id}`)
       .then((response) => {
         console.log("MARK AS READ: ", response.data.response);

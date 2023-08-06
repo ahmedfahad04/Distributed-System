@@ -3,11 +3,11 @@ const Minio = require('minio');
 
 // Set up MinIO client
 const minioClient = new Minio.Client({
-  endPoint: '192.168.0.124',
+  endPoint: '172.17.0.1',
   port: 9000,
   useSSL: false,
-  accessKey: 'mgVYctiomFevxMLKHnpI',
-  secretKey: '21jfFr4SHhr4fiNP7IDpzAjhC7PHxu5mmtJa9mzH',
+  accessKey: 'RADeuRTm9fkaaDcrwv8G',
+  secretKey: 'RBwlMuUwNUgBBUqmcABay4YuuFxvChof09R95VMA',
 });
 
 
