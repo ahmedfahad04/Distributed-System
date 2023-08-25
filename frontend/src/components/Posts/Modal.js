@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import styles from '../../styles/Modal.module.css';
+const api = require("../../apiConfig");
 
 const Modal = ({ setIsOpen, onCreatePost }) => {
 
@@ -25,7 +26,7 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
     };
 
     // authenticate user first
-    axios.get('/user/auth', config)
+    axios.get(api.USER_AUTH_URL, config)
       .then((response) => {
                 
         localStorage.setItem('u_id', response.data.user.u_id)
@@ -43,7 +44,7 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
         formData.append('image', selectedFile);
     
         // Replace the URL with your backend endpoint for image upload
-        axios.post('/image/uploadIMG', formData)
+        axios.post(api.IMG_UPLOAD_URL, formData)
           .then((response) => {
             console.log('Image uploaded successfully.', response.data.etag.etag);
             setPostImage(response.data.etag.etag);
@@ -70,14 +71,14 @@ const Modal = ({ setIsOpen, onCreatePost }) => {
         };
 
         // post to database
-        axios.post('/post/create', newPost)
+        axios.post(api.CREATE_POST_URL, newPost)
           .then((response) => {
             console.log(response);
 
             newNotification.p_id = response.data.postID;
 
             // add notification to db
-            axios.post('/notify/add', newNotification)
+            axios.post(api.ADD_NOTIFICATION_URL, newNotification)
               .then((response) => {
                 console.log(response);
               })

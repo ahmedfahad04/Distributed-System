@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Layout from '../Layout';
+import { ALL_POST_URL } from '../apiConfig';
 import MakePost from './Posts/MakePost';
 import Post from './Posts/Post';
 
@@ -14,7 +15,7 @@ function HomePage() {
   useEffect(() => {
     // get all posts
     axios
-      .get('/post/all')
+      .get(ALL_POST_URL)
       .then((response) => {
         console.log("POST: ",response.data.response);
         setPosts(response.data.response); // Set the state with the response data

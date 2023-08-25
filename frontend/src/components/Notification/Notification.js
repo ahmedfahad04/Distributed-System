@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import {NOTFICATION_READ_URL} from '../../apiConfig'
 
 function Notification({content}) {
 
@@ -8,7 +9,7 @@ function Notification({content}) {
     window.location.href = '/specific';
 
     // MARK AS READ >>>>>>>>
-    axios.post(`/notify/markAsRead/${content.u_id}/${content.p_id}`)
+    axios.post(`${NOTFICATION_READ_URL}/${content.u_id}/${content.p_id}`)
       .then((response) => {
         console.log("MARK AS READ: ", response.data.response);
       })

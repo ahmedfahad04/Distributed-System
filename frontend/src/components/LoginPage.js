@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
+import { USER_LOGIN_URL } from '../apiConfig';
 
 function LoginPage() {
 
@@ -28,7 +29,7 @@ function LoginPage() {
             password: password,
         };
 
-        axios.post('/user/login', formData)
+        axios.post(USER_LOGIN_URL, formData)
             .then((response) => {
 
                 if (response.data.token) {

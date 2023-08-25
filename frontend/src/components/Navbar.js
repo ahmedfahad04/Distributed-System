@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { ALL_NOTIFICATION_URL } from '../apiConfig';
 import NotificationPage from './Notification/NotificationPage';
 
 function Navbar({ setLoading }) {
@@ -19,9 +20,9 @@ function Navbar({ setLoading }) {
   }, []);
 
   useEffect(() => {
-    // get all posts
+    // get all notifications
     axios
-      .get(`/notify/${localStorage.getItem('u_id')}`)
+      .get(`${ALL_NOTIFICATION_URL}/${localStorage.getItem('u_id')}`)
       .then((response) => {
         console.log("Notification: ",response.data.notifications);
         setMyNotifications(response.data.notifications); // Set the state with the response data

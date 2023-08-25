@@ -20,15 +20,6 @@ function Post({ post }) {
             </div>
 
           </div>
-          
-          {/* <hr
-            style={{
-              background: 'grey',
-              color: 'blue',
-              height: '3px',
-              marginTop: '10px',
-            }}
-          /> */}
         </div>
         <div className='mt-3 text-xl'>
           {post.content}
@@ -36,7 +27,7 @@ function Post({ post }) {
 
         {/* Show Image  */}
         <div className='flex justify-center items-center mt-2'>
-          <img src={'http://172.17.0.1:9000/distributed-system/'+post.image} className='w-full rounded-lg border-2 border-white-500 shadow' alt='post_image' />
+          <img src={'http://192.168.0.119:9000/distributed-system/'+post.image} className='w-full rounded-lg border-2 border-white-500 shadow' alt='post_image' />
           {/* {'http://192.168.0.124:9000/distributed-system/'+post.image} */}
         </div>
       </div>

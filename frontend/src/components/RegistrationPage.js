@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
-// import Navbar from './Navbar'
+import { REG_URL } from '../apiConfig';
 
 function RegistrationPage() {
 
@@ -23,7 +23,7 @@ function RegistrationPage() {
       password: password
     }
 
-    axios.post("/user/register", formData)
+    axios.post(REG_URL, formData)
     .then((response) => {
       
       // show the message from response json
