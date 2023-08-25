@@ -45,7 +45,7 @@ ACCESS_TOKEN_EXPIRES='1h'
 REFRESH_TOKEN_EXPIRES='2d'
 ```
 
-Install ***Minio*** in your linux machine by following this [guide](https://github.com/abj-paul/Decentralized-Social-Media/blob/main/backend/SETUP.org). Then start the Minio server
+Install ***Minio*** in your linux machine by following this [guide](https://linuxhint.com/installing_minio_ubuntu/). Then start the Minio server
 
 ```bash
 sudo ./minio server /minio
