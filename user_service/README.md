@@ -17,12 +17,12 @@ ERROR: Encountered errors while bringing up the project.
 
   $ `sudo service mongod stop`
 
-**_Moral: We should never start the mongod if we are using the docker. Because thus it will create the conflicting situation as stated above._**
+**_Moral: We should never start the mongod (in our local machine using `sudo systemctl start mongod`) if we are using the docker. Because thus it will create the conflicting situation as stated above._**
 
-**NB**
+**Point to be Noted -**
 
 When you run your application using Docker Compose, each time you start the containers, they are isolated and run in their own environment. This includes the MongoDB container.
 
-The data stored in the MongoDB container's database is typically stored inside a **Docker volume or a bind mount**. This means that the data is not stored directly inside the container filesystem but in a location outside the container that is persisted even if the container is stopped or removed.
+The data stored in the MongoDB container's database is typically stored inside a `Docker volume or a bind mount`. This means that the **_data is not stored directly inside the container filesystem but in a location outside the container_** that is persisted even if the container is stopped or removed.
 
-However, if you haven't set up a volume or a bind mount to persist your MongoDB data, the data inside the MongoDB container will be ephemeral. This means that when you stop or remove the container, the data will be lost, and when you start a new container, it will start with a fresh database.
+However, if you haven't set up a volume or a bind mount to persist your MongoDB data, the data inside the MongoDB container will be erased in a while. This means that when you stop or remove the container, the data will be lost, and when you start a new container, it will start with a fresh database.
