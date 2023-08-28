@@ -7,8 +7,8 @@ const dotenv = require('dotenv')
 const cors = require('cors');
 
 
-// connect mongodb
-mongoose.connect('mongodb://mongo:27017/userdb', { useNewUrlParser: true, useUnifiedTopology: true });
+// connect mongodb (localhost will be replaced with 'mongo' for dockerization)
+mongoose.connect('mongodb://localhost:27017/userdb', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on('error', (err) => {
