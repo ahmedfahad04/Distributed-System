@@ -5,6 +5,10 @@ A minimalist clone of social media (like LinkedIn) that represents basic operati
 
 Our target is to build a ***monolithic*** application first. Later we'll convert it into a ***microservice***` for scalability and other production-related purpose.
 
+Checkout the branches for further update
+
+	* micro-1: Divided the backend into 3 distinct services and containerize them all
+
 ## Features
 
 Currently, this version of the app supports the following features:
