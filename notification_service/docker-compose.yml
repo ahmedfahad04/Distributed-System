@@ -5,15 +5,7 @@ services:
   web:
     build: .
     ports:
-      - 5010:5010
-
-    # we mention this environment variable because we need this value while executing
-    # the codes inside this folder.
-    environment:
-      - ACCESS_TOKEN:'thisislabpc'
-      - REFRESH_TOKEN:'thisislabpc'
-      - ACCESS_TOKEN_EXPIRES:'1h'
-      - REFRESH_TOKEN_EXPIRES:'2d'
+      - 5020:5020
     depends_on:
       - mongo
 
@@ -25,8 +17,11 @@ services:
     # see README.md for details explanation
     volumes:
       - mongo-data:/data/db
+
+    #! this host port must be DIFFERENT, as we're already running another mongo instance
+    #! in user management service
     ports:
-      - "27017:27017"
+      - "27018:27017"
 
 # volume
 volumes:
