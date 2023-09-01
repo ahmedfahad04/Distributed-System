@@ -27,7 +27,7 @@ function Post({ post }) {
 
         {/* Show Image  */}
         <div className='flex justify-center items-center mt-2'>
-          <img src={'http://192.168.0.119:9000/distributed-system/'+post.image} className='w-full rounded-lg border-2 border-white-500 shadow' alt='post_image' />
+          <img src={'http://192.168.1.9:9000/distributed-system/'+post.image} className='w-full rounded-lg border-2 border-white-500 shadow' alt='post_image' />
           {/* {'http://192.168.0.124:9000/distributed-system/'+post.image} */}
         </div>
       </div>

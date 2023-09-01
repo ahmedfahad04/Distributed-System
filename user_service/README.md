@@ -26,3 +26,14 @@ When you run your application using Docker Compose, each time you start the cont
 The data stored in the MongoDB container's database is typically stored inside a `Docker volume or a bind mount`. This means that the **_data is not stored directly inside the container filesystem but in a location outside the container_** that is persisted even if the container is stopped or removed.
 
 However, if you haven't set up a volume or a bind mount to persist your MongoDB data, the data inside the MongoDB container will be erased in a while. This means that when you stop or remove the container, the data will be lost, and when you start a new container, it will start with a fresh database.
+
+## Issue #2:
+
+ERCONNECTION while Uploading image to Minio
+
+## Solve:
+
+- Check if the minio client is running on the terminal.
+- If minio client is active, then check the ip address of minio in imageController.js file
+- If needed, change the ip mentioned in the terminal
+- MUST run `sudo docker-compose up --build` to sync the changes

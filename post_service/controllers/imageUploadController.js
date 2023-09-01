@@ -3,7 +3,7 @@ const Minio = require('minio');
 
 // Set up MinIO client
 const minioClient = new Minio.Client({
-  endPoint: '127.0.0.1',
+  endPoint: '192.168.1.9',
   port: 9000,
   useSSL: false,
   accessKey: process.env.MINIO_ACCESS_KEY,
