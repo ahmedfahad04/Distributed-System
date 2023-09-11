@@ -1,4 +1,3 @@
-
 # Distributed-System
 
 A minimalist clone of social media (like LinkedIn) that represents basic operations like adding posts along with images, user registration, and log in with proper authentication and authorization ensured with JWT Token.
@@ -7,7 +6,7 @@ Our target is to build a ***monolithic*** application first. Later we'll convert
 
 Checkout the branches for further update
 
-	* micro-1: Divided the backend into 3 distinct services and containerize them all
+	* micro-1: Divided the backend into 3 distinct services and containerize them all. Also we need to run the frontend into **PRODUCTION** mode and run it from **Nginx** using the static files.
 
 ## Features
 
