@@ -6,9 +6,11 @@ Our target is to build a ***monolithic*** application first. Later we'll convert
 
 Checkout the branches for further update
 
-	* micro-1: Divided the backend into 3 distinct services and containerize them all. Also we need to run the frontend into **PRODUCTION** mode and run it from **Nginx** using the static files.
+	
+  
+  * ***micro-1***: Divided the backend into 3 distinct services and containerize them all. Also we need to run the frontend into **PRODUCTION** mode and run it from **Nginx** using the static files.
 
-  * microservice: The complete microservice version of our monolihtic app will be found here.
+  * ***microservice***: The complete microservice version of our monolihtic app will be found here.
 
 ## Features
 
