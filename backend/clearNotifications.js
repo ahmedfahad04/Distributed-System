@@ -12,4 +12,4 @@ async function clearReadNotifications() {
 }
 
 // Schedule the job to run every 30 minute
-cron.schedule('*/2 * * * * *', clearReadNotifications); // second, minute, hour, day of month, month, day of week
+cron.schedule('*/200 * * * * *', clearReadNotifications); // second, minute, hour, day of month, month, day of week
