@@ -49,10 +49,13 @@ services:
   post_obj:
     image: minio/minio:latest
     restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
     environment:
-      - MINIO_ACCESS_KEY='gzrTDeFKHhZgP4VhUFGi'
-      - MINIO_SECRET_KEY='Siq8TfbHr5cYF3b3U2jvlmUKNUurnxtG0qLQtbsK'
-    command: server --address 0.0.0.0:9000 /data
+      - MINIO_ROOT_USER=sudo_user
+      - MINIO_ROOT_PASSWORD=sudo_pass
+    command: server --console-address ":9001" /data # you must use --console-address, else you won't be able to access the minio Website GUI through localhost:9001
     volumes:
       - minio-data:/data
 
@@ -76,6 +79,7 @@ services:
     depends_on:
       - post_db
       - post_obj
+      - notification_db
     environment:
       - DB_URL=mongodb://post_db/postdb
 

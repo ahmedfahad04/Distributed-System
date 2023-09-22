@@ -27,7 +27,7 @@ const addNotification = async (req, res) => {
     }
 
     res.json({
-      message: 'Notifications Saved Successfully!',
+      message: 'Notifications Created Successfully!',
     });
   } catch (error) {
     console.error(error);
