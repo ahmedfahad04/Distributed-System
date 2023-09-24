@@ -10,6 +10,7 @@ const multer = require('multer');
 router.post('/create', postController.createPost);
 router.get('/all', postController.showPosts);
 router.post('/removepost', postController.deletePost);
+router.post('/removeposts', postController.deleteAllPost);
 router.post('/own', postController.showPostsByUser);
 
 // Multer middleware to handle the file upload

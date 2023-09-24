@@ -63,6 +63,7 @@ const showPostsByUser = (req, res, next) => {
 const deletePost = (req, res, next) => {
 
     const postID = req.body.postID;
+    console.log("POST ID: ", postID)
 
     Post.findByIdAndRemove(postID)
     .then(() => {
@@ -72,9 +73,25 @@ const deletePost = (req, res, next) => {
     })
     .catch((error) => {
         res.status(400).json({
-            message: error 
+            message: 'Post Deletion failed ' + error 
         })
     })
+
+}
+
+const deleteAllPost = (req, res, next) => {
+
+  Post.deleteMany({})
+  .then(() => {
+      res.status(200).json({
+          message: 'All posts deleted successfully!'
+      });
+  })
+  .catch((error) => {
+      res.status(400).json({
+          message: error
+      });
+  });
 
 }
 
@@ -96,4 +113,4 @@ const getPostById = async (req, res) => {
     }
 };
 
-module.exports = { createPost, showPosts, deletePost, getPostById, showPostsByUser}
+module.exports = { createPost, showPosts, deletePost, getPostById, showPostsByUser, deleteAllPost}
