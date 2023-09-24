@@ -1,23 +1,30 @@
 const Notification = require('../models/notification');
-const User = require('../models/user');
+const axios = require('axios');
 
 const addNotification = async (req, res) => {
+
+  console.log('Notification insertion ongoing....')
   const { p_id, u_id, content, timestamp } = req.body;
 
   try {
     // Fetch all user IDs from the User model
-    const users = await User.find({}, '_id');
+    // have to make API CALL
+    // const users = await User.find({}, '_id');
+    const response = await axios.get('http://user_service:5010/user/all');    // Assuming this is the correct endpoint
+  const users = response.data.response;  // Assuming 'response' is the property containing the array
+  const users_id = users.map(user => user._id);
+  console.log(users_id);
 
     // Iterate over each user and save a notification
-    for (const user of users) {
+    for (const user_id of users_id) {
 
-        if (user._id == u_id) {
+        if (user_id == u_id) {
             continue;
         }
 
       const notificationContent = new Notification({
         p_id: p_id,
-        u_id: user._id,
+        u_id: user_id,
         content: content,
         timestamp: timestamp,
         read: false,
