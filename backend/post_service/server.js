@@ -3,10 +3,9 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const PostRoute = require('./routers/postRoute');
-const ImageRoute = require('./routers/imageUploadRoute');
 const dotenv = require('dotenv')
 const cors = require('cors');
-
+const minioClient = require('./controllers/minioClient')
 
 // connect mongodb
 mongoose.connect('mongodb://post_db:27017/postdb', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -19,13 +18,6 @@ db.on('error', (err) => {
 db.once('open', () => {
     console.log('Post Database Connection Established!');
 })
-
-// mongoose_connection_path = 'mongodb://post_db:27017/postdb'
-
-// mongoose.connect(mongoose_connection_path, (err) => {
-//     if (!err) { console.log('MongoDB connection succeeded.'); }
-//     else { console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2)); }
-// });
 
 // init app
 const app = express();
@@ -45,6 +37,28 @@ dotenv.config();
 // middleware
 app.use(cors());
 
+// ============== create bucket dynamically =================
+
+const bucketName = "distributed-system";
+
+(async () => {
+    console.log(`Creating Bucket: ${bucketName}`);
+    await minioClient.makeBucket(bucketName, "hello-there").catch((e) => {
+        console.log(
+            `Error while creating bucket '${bucketName}': ${e.message}`
+        );
+    });
+
+    console.log(`Listing all buckets...`);
+    const bucketsList = await minioClient.listBuckets();
+    console.log(
+        `Buckets List: ${bucketsList.map((bucket) => bucket.name).join(",\t")}`
+    );
+})();
+
+// ============== create bucket dynamically =================
+
+
 // routes
 app.use('/post', PostRoute);
-app.use('/image', ImageRoute);
+// app.use('/image', ImageRoute);

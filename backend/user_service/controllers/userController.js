@@ -68,6 +68,12 @@ const login = (req, res, next) => {
                         })
                     }
 
+                    console.log("A: ", process.env.ACCESS_TOKEN)
+                    console.log("R: ", process.env.REFRESH_TOKEN)
+                    console.log("E: ", process.env.ACCESS_TOKEN_EXPIRES)
+                    console.log("RE: ", process.env.REFRESH_TOKEN_EXPIRES)
+                    
+
                     if (result) {
                         let token = jwt.sign({ name: user.name, u_id: user._id }, process.env.ACCESS_TOKEN, { expiresIn: process.env.ACCESS_TOKEN_EXPIRES })
                         let refreshToken = jwt.sign({ name: user.name, u_id: user._id }, process.env.REFRESH_TOKEN, { expiresIn: process.env.REFRESH_TOKEN_EXPIRES })

@@ -2,6 +2,7 @@ const Post = require('../models/posts');
 
 const createPost = (req, res) => {
 
+    console.log("Creating post....")
     const { u_id, name, content, image, timestamp } = req.body;
 
     let postContent = new Post({

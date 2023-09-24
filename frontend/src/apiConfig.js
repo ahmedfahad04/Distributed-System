@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost'
 // const PORT_3 = 5020
 
 // POST and IMAGE Service
-export const IMG_UPLOAD_URL = `${BASE_URL}/image/uploadIMG`
+export const IMG_UPLOAD_URL = `${BASE_URL}/post/uploadIMG`
 export const CREATE_POST_URL = `${BASE_URL}/post/create`
 export const ALL_POST_URL = `${BASE_URL}/post/all`
 

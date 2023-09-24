@@ -46,16 +46,15 @@ services:
     # ports:
     #   - "4000:27017"
 
-  post_obj:
+  postobj:
     image: minio/minio:latest
-    restart: unless-stopped
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - 9000:9000
     environment:
-      - MINIO_ROOT_USER=sudo_user
-      - MINIO_ROOT_PASSWORD=sudo_pass
-    command: server --console-address ":9001" /data # you must use --console-address, else you won't be able to access the minio Website GUI through localhost:9001
+      - MINIO_ROOT_USER=2yScPd5Ss5BGuEUk
+      - MINIO_ROOT_PASSWORD=mOLBN9GwA75veIWlmYU0mhlTTWeUkqyg
+    command: server --address 0.0.0.0:9000 /data
+    # command: server --address 0.0.0.0:9000 /data # you must use --console-address, else you won't be able to access the minio Website GUI through localhost:9001
     volumes:
       - minio-data:/data
 
@@ -67,10 +66,10 @@ services:
       - user_db
     environment:
       - DB_URL=mongodb://user_db/userdb
-      - ACCESS_TOKEN:'thisislabpc'
-      - REFRESH_TOKEN:'thisislabpc'
-      - ACCESS_TOKEN_EXPIRES:'1h'
-      - REFRESH_TOKEN_EXPIRES:'2d'
+      - ACCESS_TOKEN=fahad33 #! always use = sign for value assign
+      - REFRESH_TOKEN=fahad12
+      - ACCESS_TOKEN_EXPIRES=1h
+      - REFRESH_TOKEN_EXPIRES=2d
 
   post_service:
     build: ./backend/post_service
@@ -78,7 +77,7 @@ services:
       - 5005:5000
     depends_on:
       - post_db
-      - post_obj
+      - postobj
       - notification_db
     environment:
       - DB_URL=mongodb://post_db/postdb
