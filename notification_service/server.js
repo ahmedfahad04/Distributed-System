@@ -9,7 +9,7 @@ require('./clearNotifications')     // run clearNotifications scheduler
 
 
 // connect mongodb
-mongoose.connect('mongodb://mongo:27017/userdb', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://notification_db:27017/notfydb', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on('error', (err) => {
@@ -17,8 +17,14 @@ db.on('error', (err) => {
 })
 
 db.once('open', () => {
-    console.log('Database Connection Established!');
+    console.log('Notificaton Database Connection Established!');
 })
+// mongoose_connection_path = 'mongodb://notification_db:27017/notifydb'
+
+// mongoose.connect(mongoose_connection_path, (err) => {
+//     if (!err) { console.log('MongoDB connection succeeded.'); }
+//     else { console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2)); }
+// });
 
 // init app
 const app = express();

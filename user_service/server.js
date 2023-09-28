@@ -8,7 +8,7 @@ const cors = require('cors');
 
 
 // connect mongodb (localhost will be replaced with 'mongo' for dockerization)
-mongoose.connect('mongodb://localhost:27017/userdb', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://user_db:27017/userdb', { useNewUrlParser: true, useUnifiedTopology: true, directConnection: true });
 const db = mongoose.connection;
 
 db.on('error', (err) => {
@@ -16,7 +16,7 @@ db.on('error', (err) => {
 })
 
 db.once('open', () => {
-    console.log('Database Connection Established!');
+    console.log('User Database Connection Established!');
 })
 
 // init app

@@ -1,18 +1,26 @@
 const Minio = require('minio');
 
-
 // Set up MinIO client
-const minioClient = new Minio.Client({
-  endPoint: '192.168.1.9',
-  port: 9000,
-  useSSL: false,
-  accessKey: process.env.MINIO_ACCESS_KEY,
-  secretKey: process.env.MINIO_SECRET_KEY,
-});
+let minioClient = null;
+try {
+    minioClient = new Minio.Client({
+      endPoint: "postobj",
+      port: 9000,
+      accessKey: "2yScPd5Ss5BGuEUk",
+      secretKey: 'mOLBN9GwA75veIWlmYU0mhlTTWeUkqyg',
+      useSSL:false
+  });
+  console.log("MINIO CONNECTION SUCCESSFUL")
+} catch (error) {
+  console.log('MINIO CONNECTION FAILED....', error)
+}
 
+// const minioClient = require('./minioClient');
 
 // Handle the image upload and store it on MinIO
 const uploadImage = (req, res) => {
+
+  console.log("Inside Upload Image")
 
   if (!req.file) {
     return res.status(400).send('No image file found.');
@@ -23,10 +31,10 @@ const uploadImage = (req, res) => {
     'Content-Type': req.file.mimetype,
   };
 
-  const bucketName = 'distributed-system'; // Replace with your desired bucket name
-  const objectName = req.file.originalname;
+  // const bucketName = 'distributed-system'; // Replace with your desired bucket name
 
-  minioClient.fPutObject(bucketName, objectName, filePath, metaData, (err, etag) => {
+  const objectName = req.file.originalname;
+  minioClient.fPutObject('distributed-system', objectName, filePath, metaData, (err, etag) => {
     if (err) {
       console.log(err);
       return res.status(500).json( {message:'Error uploading the image.'});

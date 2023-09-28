@@ -37,3 +37,21 @@ ERCONNECTION while Uploading image to Minio
 - If minio client is active, then check the ip address of minio in imageController.js file
 - If needed, change the ip mentioned in the terminal
 - MUST run `sudo docker-compose up --build` to sync the changes
+
+## Issue #3:
+
+Sometimes your path/url might not work while configured with nginx but your url
+definition is correct.
+
+## Solve:
+
+In that case, docker loads the data from **cache**. So we need to reload the data
+so that it don't pickup from the cache data. So you should runt the following command in orders:
+
+`sudo docker-compose down`
+
+`sudo docker-compose build`
+
+`sudo docker-compose up`
+
+And your issues should be fixed
