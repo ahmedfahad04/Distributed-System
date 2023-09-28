@@ -8,6 +8,6 @@ RUN npm i
 
 COPY . .
 
-EXPOSE 3000
+# EXPOSE 3000
 
-CMD ["npm", "start","--host", "0.0.0.0"]
+RUN npm run build
