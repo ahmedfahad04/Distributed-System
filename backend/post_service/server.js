@@ -49,12 +49,37 @@ const bucketName = "distributed-system";
         );
     });
 
+    console.log(`Setting public access policy for bucket: ${bucketName}`);
+    const policy = `
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": [
+                    "s3:GetObject"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::${bucketName}/*"
+                ]
+            }
+        ]
+    }`;
+
+    await minioClient.setBucketPolicy(bucketName, policy).catch((e) => {
+        console.log(
+            `Error while setting bucket policy for '${bucketName}': ${e.message}`
+        );
+    });
+
     console.log(`Listing all buckets...`);
     const bucketsList = await minioClient.listBuckets();
     console.log(
         `Buckets List: ${bucketsList.map((bucket) => bucket.name).join(",\t")}`
     );
 })();
+
 
 // ============== create bucket dynamically =================
 
