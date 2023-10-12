@@ -3,6 +3,7 @@ version: "3.8"
 services:
   nginx:
     image: nginx:latest
+    build: .
     restart: unless-stopped
     ports:
       - 80:80
@@ -13,14 +14,14 @@ services:
       - user_service
       - notification_service
 
-  client:
-    image: client
-    build: ./frontend
-    restart: unless-stopped
-    ports:
-      - 3000:3000
-    depends_on:
-      - nginx
+  # client:
+  #   image: client
+  #   build: ./frontend
+  #   restart: unless-stopped
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - nginx
 
   user_db:
     image: mongo:latest
