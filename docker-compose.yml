@@ -14,38 +14,23 @@ services:
       - user_service
       - notification_service
 
-  # client:
-  #   image: client
-  #   build: ./frontend
-  #   restart: unless-stopped
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - nginx
-
   user_db:
     image: mongo:latest
     restart: unless-stopped
     volumes:
       - user-data:/data/db
-    # ports:
-    #   - "4002:27017"
 
   post_db:
     image: mongo:latest
     restart: unless-stopped
     volumes:
       - post-data:/data/db
-    # ports:
-    #   - "4001:27017"
 
   notification_db:
     image: mongo:latest
     restart: unless-stopped
     volumes:
       - notification-data:/data/db
-    # ports:
-    #   - "4000:27017"
 
   postobj:
     image: minio/minio:latest
