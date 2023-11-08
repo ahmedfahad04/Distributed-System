@@ -11,9 +11,9 @@ const addNotification = async (req, res) => {
     // have to make API CALL
     // const users = await User.find({}, '_id');
     const response = await axios.get('http://user_service:5010/user/all');    // Assuming this is the correct endpoint
-  const users = response.data.response;  // Assuming 'response' is the property containing the array
-  const users_id = users.map(user => user._id);
-  console.log(users_id);
+    const users = response.data.response;  // Assuming 'response' is the property containing the array
+    const users_id = users.map(user => user._id);
+    console.log(users_id);
 
     // Iterate over each user and save a notification
     for (const user_id of users_id) {
